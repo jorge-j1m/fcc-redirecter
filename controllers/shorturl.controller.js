@@ -19,16 +19,9 @@ const shorturlPost = async (req = request, res = response) =>{
 
     const codigo = await Url.count() + 1
 
-    const isValidHttpUrl = (string)=> {
-        let urlCheck;
-
-        try {
-          urlCheck = new URL(string);
-        } catch (_) {
-          return false;  
-        }
-      
-        return urlCheck.protocol === "http:" || urlCheck.protocol === "https:";
+    const isValidHttpUrl = (url)=> {
+        const matchpattern = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/gm;
+        return matchpattern.test(url);
       }
 
     if (isValidHttpUrl){
