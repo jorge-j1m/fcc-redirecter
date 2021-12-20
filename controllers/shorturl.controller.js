@@ -24,7 +24,7 @@ const shorturlPost = async (req = request, res = response) =>{
         return matchpattern.test(url);
       }
 
-    if (isValidHttpUrl){
+    if (isValidHttpUrl(url)){
         
         const uerrele = new Url({ url, codigo });
     
