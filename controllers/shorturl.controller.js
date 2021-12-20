@@ -28,7 +28,7 @@ const shorturlPost = async (req = request, res = response) =>{
           return false;  
         }
       
-        return url.protocol === "http:" || url.protocol === "https:";
+        return urlCheck.protocol === "http:" || urlCheck.protocol === "https:";
       }
 
     if (isValidHttpUrl){
