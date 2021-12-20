@@ -1,5 +1,7 @@
 const { Usuario} = require('../models');
 
+
+
 const emailExiste = async( correo = '' ) => {
 
     // Verificar si el correo existe

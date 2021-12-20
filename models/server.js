@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-
+const bodyParser = require('body-parser'); 
 const { dbConnection } = require('../database/config');
 
 class Server {
@@ -10,7 +10,8 @@ class Server {
         this.port = process.env.PORT;
 
         this.paths = {
-            usuarios: "/api/usuarios"
+            usuarios: "/api/usuarios",
+            shorturl: "/api/shorturl"
         }
 
 
@@ -37,6 +38,9 @@ class Server {
         // Lectura y parseo del body
         this.app.use( express.json() );
 
+        // BodyParser
+        this.app.use(bodyParser.urlencoded({ extended: true }));
+
         // Directorio Público
         this.app.use( express.static('public') );
 
@@ -45,6 +49,7 @@ class Server {
     routes() {
         
         this.app.use( this.paths.usuarios, require("../routes/usuarios.routes"));
+        this.app.use( this.paths.shorturl, require("../routes/shorturl.routes"));
         
     }
 
